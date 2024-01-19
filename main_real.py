@@ -57,7 +57,7 @@ def main():
     generator = torch.Generator(device="cuda").manual_seed(42)
 
     ## Parameter setting
-    num_steps = 50
+    num_steps = args.steps
     style_strength_ratio = 20
     start_merge_step = int(float(style_strength_ratio) / 100 * num_steps)
     if start_merge_step > 30:
@@ -67,7 +67,7 @@ def main():
         prompt=args.prompt,
         input_id_images=input_id_images,
         negative_prompt=args.neg_prompt,
-        num_images_per_prompt=4,
+        num_images_per_prompt=args.n_images,
         num_inference_steps=num_steps,
         start_merge_step=start_merge_step,
         generator=generator,
@@ -85,6 +85,8 @@ if __name__ == '__main__':
     parser.add_argument('--exp-name', type=str)
     parser.add_argument('--prompt', type=str)
     parser.add_argument('--neg-prompt', type=str)
+    parser.add_argument('--n-images', type=int, default=1)
+    parser.add_argument('--steps', type=int, default=50)
     args = parser.parse_args()
 
     main()
