@@ -50,8 +50,8 @@ def main():
         input_id_images.append(load_image(image_path))
 
     ## Note that the trigger word `img` must follow the class word for personalization
-    prompt = "sci-fi, closeup portrait photo of an aisa man img wearing the sunglasses in Iron man suit, face, slim body, high quality, film grain"
-    negative_prompt = "(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth"
+    # prompt = "sci-fi, closeup portrait photo of an aisa man img wearing the sunglasses in Iron man suit, face, slim body, high quality, film grain"
+    # negative_prompt = "(asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth"
     generator = torch.Generator(device="cuda").manual_seed(42)
 
     ## Parameter setting
@@ -62,9 +62,9 @@ def main():
         start_merge_step = 30
 
     images = pipe(
-        prompt=prompt,
+        prompt=args.prompt,
         input_id_images=input_id_images,
-        negative_prompt=negative_prompt,
+        negative_prompt=args.neg_prompt,
         num_images_per_prompt=4,
         num_inference_steps=num_steps,
         start_merge_step=start_merge_step,
@@ -81,6 +81,8 @@ if __name__ == '__main__':
     parser.add_argument('--output', type=str, help='the path to save generated images')
     parser.add_argument('--input', type=str, help='the path to the ID images')
     parser.add_argument('--exp-name', type=str)
+    parser.add_argument('--prompt', type=str)
+    parser.add_argument('--neg-prompt', type=str)
     args = parser.parse_args()
 
     main()
