@@ -44,9 +44,6 @@ def main():
     image_basename_list = os.listdir(input_folder_name)
     image_path_list = sorted([os.path.join(input_folder_name, basename) for basename in image_basename_list])
 
-    from IPython import embed
-    embed()
-
     input_id_images = []
     for image_path in image_path_list:
         input_id_images.append(load_image(image_path))
@@ -85,7 +82,7 @@ if __name__ == '__main__':
     parser.add_argument('--exp-name', type=str)
     parser.add_argument('--prompt', type=str)
     parser.add_argument('--neg-prompt', type=str)
-    parser.add_argument('--n-images', type=int, default=1)
+    parser.add_argument('--n-images', type=int, default=2)
     parser.add_argument('--steps', type=int, default=50)
     args = parser.parse_args()
 
