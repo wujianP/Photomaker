@@ -9,8 +9,7 @@ from photomaker import PhotoMakerStableDiffusionXLPipeline
 
 
 def main():
-    from IPython import embed
-    embed()
+
     # base model path
     base_model_path = 'SG161222/RealVisXL_V3.0'
     # download checkpoint
@@ -44,6 +43,9 @@ def main():
     input_folder_name = args.input
     image_basename_list = os.listdir(input_folder_name)
     image_path_list = sorted([os.path.join(input_folder_name, basename) for basename in image_basename_list])
+
+    from IPython import embed
+    embed()
 
     input_id_images = []
     for image_path in image_path_list:
